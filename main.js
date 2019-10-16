@@ -9,7 +9,7 @@ var Main = function() {
             if (searchInput) {
                 search.concertThis(searchInput);
             } else {
-                console.log("Please enter the name of a band you would like to search")
+                console.log("\nPlease enter the name of a band you would like to search")
             }
         
         } else if (query === "spotify-this-song") {
@@ -18,7 +18,7 @@ var Main = function() {
             if (searchInput) {
                 search.spotifyThis(searchInput);
             } else {
-                console.log("Please enter the name of a song you would like to search")
+                console.log("\nPlease enter the name of a song you would like to search")
             }
         
         } else if (query === "movie-this") {
@@ -26,7 +26,7 @@ var Main = function() {
             if (searchInput) {
                 search.movieThis(searchInput);
             } else {
-                console.log("Please enter the name of a movie you would like to search")
+                console.log("\nPlease enter the name of a movie you would like to search")
             }
         
         } else if (query === "do-what-it-says") {
@@ -37,6 +37,7 @@ var Main = function() {
                 
                 var dataArr = data.split(",")
                 var random = Math.floor(Math.random() * dataArr.length)
+                console.log("\nHere's a random song from Billboard's Top 100\nAs of October 16, 2019")
                 search.spotifyThis(dataArr[random]);
             })
         } else {
