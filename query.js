@@ -6,8 +6,6 @@ var keys = require("./keys");
 var spotify = new Spotify(keys.spotify);
 
 var Query = function() {
-    var divider = "\n-------------------------------\n"
-
     this.concertThis = function(show) {
         console.log("\nThe upcoming events in the United States are...")
         console.log("-------------------------------\n")
