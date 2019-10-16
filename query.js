@@ -1,25 +1,31 @@
 var axios = require("axios");
 var moment = require("moment");
-var fs = require("fs");
 var Spotify = require('node-spotify-api');
 var keys = require("./keys");
 var spotify = new Spotify(keys.spotify);
 
 var Query = function() {
     this.concertThis = function(show) {
-        console.log("\nThe upcoming events in the United States are...")
-        console.log("-------------------------------\n")
 
         axios
         .get("https://rest.bandsintown.com/artists/" + show + "/events?app_id=codingbootcamp")
         .then(function(response) {
-            for (var i = 0; i < response.data.length; i++) {
+            if (!response.data[0]) {
+                console.log("\nI'm sorry. There are no upcoming concerts\nTry another band")
+            } else {
+                console.log("\nThe upcoming events in the United States are...")
+                console.log("-------------------------------\n")
+                for (var i = 0; i < response.data.length; i++) {
                 if (response.data[i].venue.country === "United States") { 
                     console.log(response.data[i].venue.name + 
                     "\nin " + response.data[i].venue.city + ", " + response.data[i].venue.region + 
                     " on " + moment(response.data[i].datetime).format("MM/DD/YYYY") +
                     " at " + moment(response.data[i].datetime).format("h:mm a") + "\n");
                     console.log("*******************************\n");
+                } else if (!response.data[i].venue) {
+                    console.log(response.data[i].venue)
+                    console.log("I'm sorry. There are no upcoming concerts\nTry another band")
+                    }
                 }
             }
         });
